@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :gossips, dependent: :destroy
+  has_many :gossips, class_name: 'Gossip', dependent: :destroy
 
 
 end

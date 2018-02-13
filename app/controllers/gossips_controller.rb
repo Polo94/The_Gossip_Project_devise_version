@@ -25,6 +25,7 @@ class GossipsController < ApplicationController
   # POST /gossips.json
   def create
     @gossip = Gossip.new(gossip_params)
+    @gossip.author = current_user
 
     respond_to do |format|
       if @gossip.save
@@ -69,6 +70,6 @@ class GossipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gossip_params
-      params.require(:gossip).permit(:content)
+      params.require(:gossip).permit(:title, :content, :user_id)
     end
 end
